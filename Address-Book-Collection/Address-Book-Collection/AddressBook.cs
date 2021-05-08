@@ -10,18 +10,20 @@ namespace Address_Book_Collection
 /// </summary>
     public class AddressBook : IPerson
     {
-        List<Person> adressBookList = new List<Person>();//to add details in addressbook
+        //Creating list 
+        //Adding List with name  adressBookList
+        List<Person> listaddress = new List<Person>();//to add details in addressbook
         public AddressBook()
         {
-            this.adressBookList = new List<Person>();
+            this.listaddress = new List<Person>();
         }
         public void AddContact(string firstName, string lastName, string address, string city, string state, long phoneNumber, string email)
         {
-            bool flag = this.adressBookList.Any(item => item.FirstName == firstName && item.LastName == lastName);
+            bool flag = this.listaddress.Any(item => item.FirstName == firstName && item.LastName == lastName);
             if (!flag)
             {
                 Person person = new Person(firstName, lastName, city, state, email, phoneNumber);
-                adressBookList.Add(person);
+                listaddress.Add(person);
                 Console.WriteLine("Contact added Successfully");
             }
             else
@@ -29,53 +31,69 @@ namespace Address_Book_Collection
                 Console.WriteLine("{0}{1} this contact already exist in Address Book :", firstName, lastName);
             }
         }
+        //Adding Method For Display Person
         public void displayPerson()
         {
             Console.WriteLine("\nEntered Person Details is:");
-            foreach (var person in adressBookList)
+            foreach (var person in listaddress)
             {
                 Console.WriteLine("FirstName: {0}, LastName: {1}, city: {2}, state: {3}, email: {4}, phoneNumber: {5}", person.FirstName, person.LastName, person.city, person.state, person.email, person.phoneNumber);
             }
         }
-
+        //Adding Method for searchPerson
         public void searchPerson()
         {
             Console.WriteLine("\n Enter city or state ");
             string city = Console.ReadLine();
             string state = Console.ReadLine();
 
-            foreach (Person person in adressBookList.FindAll(item => item.city == city && item.state == state).ToList())
+            foreach (Person person in listaddress.FindAll(item => item.city == city && item.state == state).ToList())
             {
                 Console.WriteLine("\n{0}\t{1}", person.FirstName, person.LastName);
             }
         }
-
+        //Adding Method SameCityPerson
         public void sameCityPerson()
         {
             Console.WriteLine("\n Enter city for display Same city contacts ");
             string city = Console.ReadLine();
 
-            foreach (Person person in adressBookList.FindAll(item => item.city == city).ToList())
+            foreach (Person person in listaddress.FindAll(item => item.city == city).ToList())
             {
                 Console.WriteLine("\n{0}\t{1}", person.FirstName, person.LastName);
             }
         }
-
+        //Adding Method For SameStatePerson
         public void sameStatePerson()
         {
             Console.WriteLine("\n Enter state for display Same State contacts ");
             string state = Console.ReadLine();
 
-            foreach (Person person in adressBookList.FindAll(item => item.state == state).ToList())
+            foreach (Person person in listaddress.FindAll(item => item.state == state).ToList())
             {
                 Console.WriteLine("\n{0}\t{1}", person.FirstName, person.LastName);
             }
         }
+        //Adding Method FindCountSameState
+        public void findCountSameStateOrCityPerson()
+        {
+            Console.WriteLine("\n Enter city and state");
+            string city = Console.ReadLine();
+            string state = Console.ReadLine();
+            int count2 = 0;
+            foreach (Person person in listaddress.FindAll(item => item.city == city && item.state == state).ToList())
+            {
+                Console.WriteLine("\n{0}\t{1}", person.FirstName, person.LastName);
+                count2++;
+            }
+            Console.WriteLine("This {0} persons are in same state {1} \t {2} ", count2, state, city);
+        }
+        //Adding Method To Edit Person
         public void editPerson()
         {
             Console.WriteLine("\n enter First name to edit details:");
             string name = Console.ReadLine();
-            foreach (var person in adressBookList)
+            foreach (var person in listaddress)
             {
                 if (name.Equals(person.FirstName))
                 {
@@ -119,14 +137,13 @@ namespace Address_Book_Collection
                 }
             }
         }
-
-        public void deletePerson()
+        public void deletePerson()//Adding Method Delete Person
         {
             Console.WriteLine("Enter firstName of the user you want to remove");
             var firstName = Console.ReadLine();
             Console.WriteLine("Enter lastname of the user you want to remove");
             var lastName = Console.ReadLine();
-            adressBookList.RemoveAll(item => item.FirstName == firstName && item.LastName == lastName);
+            listaddress.RemoveAll(item => item.FirstName == firstName && item.LastName == lastName);
 
         }
     }

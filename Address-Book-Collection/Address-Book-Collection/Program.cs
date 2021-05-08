@@ -13,9 +13,9 @@ namespace Address_Book_Collection
         {
             Console.WriteLine("++++++++++++Welcome in Address book Collection+++++++++++");
 
-            ///create dictionary and 
-            ///Dict is name of dictionary
-            Dictionary<string, AddressBook> abDict = new Dictionary<string, AddressBook>();//string is Tkey and AddressBook is TValue.
+            //Create dictionary and 
+            ///myDict is name of dictionary
+            Dictionary<string, AddressBook> myDict = new Dictionary<string, AddressBook>();//string is Tkey and AddressBook is TValue.
             bool ProgramIsRunning = true;
 
             Console.WriteLine("\nHow many address Book you want to create : ");
@@ -26,10 +26,10 @@ namespace Address_Book_Collection
                 Console.WriteLine("Enter the name of address book " + i + ": ");
                 string bookName = Console.ReadLine();
                 AddressBook addressBook = new AddressBook(); //creating object of AddressBook class
-                abDict.Add(bookName, addressBook); //add element in dictionary
+                myDict.Add(bookName, addressBook); //add element in dictionary
             }
             Console.WriteLine("\nYou have created following Address Books : ");
-            foreach (var item in abDict) //var is used and it is store any data type value.
+            foreach (var item in myDict) //var is used and it is store any data type value.
             {
                 Console.WriteLine("{0}", item.Key);
             }
@@ -42,15 +42,15 @@ namespace Address_Book_Collection
                     case 1:
                         Console.WriteLine("\nEnter Existing Address Book Name for adding contacts");
                         string contactName = Console.ReadLine();
-                        if (abDict.ContainsKey(contactName))
+                        if (myDict.ContainsKey(contactName))
                         {
                             Console.WriteLine("\nEnter the number of contacts you want to add in address book");
                             int numberOfContacts = Convert.ToInt32(Console.ReadLine());
                             for (int i = 1; i <= numberOfContacts; i++)
                             {
-                                addContactBook(abDict[contactName]);
+                                addContactBook(myDict[contactName]);
                             }
-                            abDict[contactName].displayPerson();
+                            myDict[contactName].displayPerson();
                         }
                         else
                         {
@@ -60,10 +60,10 @@ namespace Address_Book_Collection
                     case 2:
                         Console.WriteLine("Enter Address Book Name for edit contact");
                         string editcontactName = Console.ReadLine();
-                        if (abDict.ContainsKey(editcontactName))
+                        if (myDict.ContainsKey(editcontactName))
                         {
-                            abDict[editcontactName].editPerson();
-                            abDict[editcontactName].displayPerson();
+                            myDict[editcontactName].editPerson();
+                            myDict[editcontactName].displayPerson();
                         }
                         else
                         {
@@ -73,10 +73,10 @@ namespace Address_Book_Collection
                     case 3:
                         Console.WriteLine("\nEnter Address Book Name for delete contact");
                         string deleteContact = Console.ReadLine();
-                        if (abDict.ContainsKey(deleteContact))
+                        if (myDict.ContainsKey(deleteContact))
                         {
-                            abDict[deleteContact].deletePerson();
-                            abDict[deleteContact].displayPerson();
+                            myDict[deleteContact].deletePerson();
+                            myDict[deleteContact].displayPerson();
                         }
                         else
                         {
@@ -86,14 +86,14 @@ namespace Address_Book_Collection
                     case 4:
                         Console.WriteLine("\nEnter Address Book Name for display contacts");
                         string displayContactsInAddressBook = Console.ReadLine();
-                        abDict[displayContactsInAddressBook].displayPerson();
+                        myDict[displayContactsInAddressBook].displayPerson();
                         break;
                     case 5:
                         Console.WriteLine("\n Enter address book name :");
                         string searchContacts = Console.ReadLine();
-                        if (abDict.ContainsKey(searchContacts))
+                        if (myDict.ContainsKey(searchContacts))
                         {
-                            abDict[searchContacts].searchPerson();
+                            myDict[searchContacts].searchPerson();
                         }
                         else
                         {
@@ -103,9 +103,9 @@ namespace Address_Book_Collection
                     case 6:
                         Console.WriteLine("\n Enter address book name :");
                         string displayContacts = Console.ReadLine();
-                        if (abDict.ContainsKey(displayContacts))
+                        if (myDict.ContainsKey(displayContacts))
                         {
-                            abDict[displayContacts].sameCityPerson();
+                            myDict[displayContacts].sameCityPerson();
                         }
                         else
                         {
@@ -115,9 +115,9 @@ namespace Address_Book_Collection
                     case 7:
                         Console.WriteLine("\n Enter address book name :");
                         string displayContacts2 = Console.ReadLine();
-                        if (abDict.ContainsKey(displayContacts2))
+                        if (myDict.ContainsKey(displayContacts2))
                         {
-                            abDict[displayContacts2].sameStatePerson();
+                            myDict[displayContacts2].sameStatePerson();
                         }
                         else
                         {
